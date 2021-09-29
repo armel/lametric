@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 
 import requests
 import datetime
@@ -9,7 +9,7 @@ import os
 # --- constants & variables
 
 http = "http://www.neowsapp.com/rest/v1/feed"
-file = "asteroid.json"
+file = "data/asteroid.json"
 
 data = {
     "frames": []

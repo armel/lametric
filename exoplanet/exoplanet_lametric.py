@@ -9,7 +9,7 @@ import os
 # --- constants & variables
 
 http = "https://raw.githubusercontent.com/OpenExoplanetCatalogue/oec_tables/master/comma_separated/open_exoplanet_catalogue.txt"
-file = "exoplanet.csv"
+file = "data/exoplanet.csv"
 
 data = {
     "frames": []
