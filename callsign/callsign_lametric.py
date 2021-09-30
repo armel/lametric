@@ -9,6 +9,8 @@ data = {
     "frames": []
 }
 
+callsign = "F4HWN"
+
 try:
     arg = cgi.FieldStorage()
     callsign = arg['Callsign'].value
