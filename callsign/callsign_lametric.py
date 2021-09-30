@@ -37,8 +37,8 @@ def add_name(text, icon):
 
 def main():
 
-    add_name(callsign, "a7531")
-    add_name("ON AIR", "a7531")
+    add_name(callsign, "26616")
+    add_name("ON AIR", "26616")
 
     # post frame
 
