@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 
 import requests
 import datetime
@@ -9,7 +9,7 @@ import os
 # --- constants & variables
 
 http = "http://www.neowsapp.com/rest/v1/feed"
-file = "data/asteroid.json"
+file = "asteroid.json"
 
 data = {
     "frames": []
@@ -58,12 +58,16 @@ def main():
         modify = datetime.datetime.fromtimestamp(os.path.getmtime(file)).strftime("%Y-%m-%d")
 
     if not os.path.isfile(file) or modify != today:     # if necessary update file
-        r = requests.get(http+"?start_date="+today+"&end_date="+delta+"&detailed=false")
-        f = open(file, 'w')
-        f.write(r.content)
-        f.close
+        try:
+            r = requests.get(http+"?start_date="+today+"&end_date="+delta+"&detailed=false")
+            f = open(file, 'w')
+            f.write(r.content)
+            f.close
 
-        asteroid = json.loads(r.content)
+            asteroid = json.loads(r.content)
+        except:
+            with open(file) as data_file:
+                asteroid = json.load(data_file)
     else:
         with open(file) as data_file:
             asteroid = json.load(data_file)
@@ -105,8 +109,11 @@ def main():
     for i in xrange(0, 7):
         delta = (now + datetime.timedelta(days=i)).strftime("%Y-%m-%d")
         count = 0
-        for j in asteroid["near_earth_objects"][delta]:
-            count += 1
+        try:
+            for j in asteroid["near_earth_objects"][delta]:
+                count += 1
+        except:
+            pass
 
         total += count
         prevision.append(count)
